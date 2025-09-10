@@ -1,0 +1,978 @@
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import {
+  FaGithub,
+  FaLinkedin,
+  FaEnvelope,
+  FaSun,
+  FaMoon,
+  FaReact,
+  FaNodeJs,
+  FaGitAlt,
+  FaDatabase,
+  FaBars,
+  FaTimes,
+  FaRocket,
+  FaCode,
+  FaUsers
+} from 'react-icons/fa'
+import {
+  SiNextdotjs,
+  SiJavascript,
+  SiTypescript,
+  SiRedux,
+  SiTailwindcss,
+  SiFirebase,
+  SiFlutter
+} from 'react-icons/si'
+
+function App() {
+  const [darkMode, setDarkMode] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [darkMode])
+
+  const scrollToSection = (sectionId) => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
+    setMobileMenuOpen(false)
+  }
+
+  const experiences = [
+    {
+      company: "Lenskart.com",
+      role: "Technical Lead",
+      period: "Oct 2020 – Present",
+      color: "from-blue-500 to-cyan-500",
+      icon: <FaUsers className="text-2xl" />,
+      highlights: [
+        "Led 15 developers across 10+ projects",
+        "Improved Page Speed Score by 35–40%",
+        "Implemented micro-frontend architecture",
+        "Mentored junior developers and conducted code reviews"
+      ]
+    },
+    {
+      company: "Nicobar Design Studio",
+      role: "Team Lead",
+      period: "Dec 2018 – Oct 2020",
+      color: "from-purple-500 to-pink-500",
+      icon: <FaCode className="text-2xl" />,
+      highlights: [
+        "Managed team of 5 developers",
+        "Improved Page Speed by ~40%",
+        "Built membership & payment modules",
+        "Implemented responsive design patterns"
+      ]
+    },
+    {
+      company: "Boutiqaat (Kuwait)",
+      role: "Sr. Software Developer",
+      period: "Mar 2018 – Dec 2018",
+      color: "from-green-500 to-teal-500",
+      icon: <FaRocket className="text-2xl" />,
+      highlights: [
+        "Developed with React.js + Redux",
+        "Built Homepage, Checkout, Dashboard",
+        "Optimized performance and user experience",
+        "Collaborated with international team"
+      ]
+    },
+    {
+      company: "Daffodil Software",
+      role: "Associate IT",
+      period: "Jun 2016 – Mar 2018",
+      color: "from-orange-500 to-red-500",
+      icon: <FaCode className="text-2xl" />,
+      highlights: [
+        "Built React.js and React Native apps",
+        "Developed Node.js backend services",
+        "Fixed bugs and managed releases",
+        "Learned full-stack development"
+      ]
+    }
+  ]
+
+  const projects = [
+    {
+      title: "AI-powered Prescription Analysis & Billing App",
+      description: "Extracted data from handwritten prescriptions using OCR + AI and auto-generated billing systems for healthcare providers.",
+      gradient: "from-blue-500 to-purple-600",
+      icon: "🤖"
+    },
+    {
+      title: "Multilingual Optical Sales Chat Agent",
+      description: "Built an intelligent chat system that handles e-commerce queries in multiple languages for optical retail.",
+      gradient: "from-green-500 to-teal-600",
+      icon: "💬"
+    },
+    {
+      title: "Figma-to-Code Automation Tool",
+      description: "Automated conversion of Figma designs into production-ready code, reducing development time by 60%.",
+      gradient: "from-purple-500 to-pink-600",
+      icon: "🎨"
+    },
+    {
+      title: "AI-driven Inventory Management System",
+      description: "Developed comprehensive inventory system using AI-driven instructions in Cursor IDE with real-time tracking.",
+      gradient: "from-orange-500 to-red-600",
+      icon: "📦"
+    }
+  ]
+
+  const skills = [
+    { name: "React.js", icon: <FaReact className="text-blue-500" />, level: 95 },
+    { name: "Next.js", icon: <SiNextdotjs className="text-black dark:text-white" />, level: 90 },
+    { name: "JavaScript", icon: <SiJavascript className="text-yellow-500" />, level: 95 },
+    { name: "TypeScript", icon: <SiTypescript className="text-blue-600" />, level: 85 },
+    { name: "Redux", icon: <SiRedux className="text-purple-600" />, level: 90 },
+    { name: "Node.js", icon: <FaNodeJs className="text-green-600" />, level: 80 },
+    { name: "React Native", icon: <FaReact className="text-blue-400" />, level: 75 },
+    { name: "Flutter", icon: <SiFlutter className="text-blue-400" />, level: 70 },
+    { name: "TailwindCSS", icon: <SiTailwindcss className="text-teal-500" />, level: 90 },
+    { name: "GitHub", icon: <FaGitAlt className="text-orange-600" />, level: 95 },
+    { name: "Firebase", icon: <SiFirebase className="text-yellow-600" />, level: 80 },
+    { name: "Micro-frontends", icon: <FaDatabase className="text-gray-600" />, level: 85 }
+  ]
+
+  return (
+    <div
+      className={`min-h-screen transition-colors duration-300 page-background ${darkMode ? 'dark' : ''}`}
+      style={{
+        backgroundImage: `url('https://images.pexels.com/photos/7130872/pexels-photo-7130872.jpeg')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+        backgroundColor: '#1a1a1a'
+      }}
+    >
+      {/* Fallback Background Image */}
+      <img
+        src="https://images.pexels.com/photos/7130872/pexels-photo-7130872.jpeg"
+        alt="Background"
+        className="fixed inset-0 w-full h-full object-cover -z-20"
+        style={{ zIndex: -20 }}
+      />
+
+      {/* Fixed Background Overlay */}
+      <div className="fixed inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/40 -z-10"></div>
+      <div className="fixed inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/30 -z-10"></div>
+      <div className="fixed inset-0 bg-gradient-to-br from-amber-900/15 via-transparent to-orange-900/20 -z-10"></div>
+
+      <div className="relative text-white">
+        {/* Navigation */}
+        <nav className="fixed top-0 w-full bg-black/20 backdrop-blur-lg z-50 border-b border-white/20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center py-4">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+              >
+                Mayank Soni
+              </motion.div>
+
+              <div className="hidden md:flex space-x-8">
+                {['home', 'experience', 'projects', 'skills', 'education', 'contact'].map((item) => (
+                  <button
+                    key={item}
+                    onClick={() => scrollToSection(item)}
+                    className="capitalize hover:text-blue-300 text-white/90 transition-all duration-300 font-medium relative group"
+                  >
+                    {item}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                  </button>
+                ))}
+              </div>
+
+              <div className="flex items-center space-x-4">
+                <button
+                  onClick={() => setDarkMode(!darkMode)}
+                  className="p-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-blue-600 hover:to-purple-600 transition-all duration-300 shadow-lg"
+                >
+                  {darkMode ? <FaSun className="text-lg" /> : <FaMoon className="text-lg" />}
+                </button>
+
+                <button
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  className="md:hidden p-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white transition-all duration-300"
+                >
+                  {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="fixed top-20 left-0 right-0 bg-black/80 backdrop-blur-lg border-b border-white/20 z-40 md:hidden"
+            >
+              <div className="px-6 py-8 space-y-6">
+                {['home', 'experience', 'projects', 'skills', 'education', 'contact'].map((item, index) => (
+                  <motion.button
+                    key={item}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    onClick={() => scrollToSection(item)}
+                    className="block w-full text-left capitalize text-lg font-medium hover:text-blue-300 text-white/90 transition-colors py-2"
+                  >
+                    {item}
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Hero Section */}
+        <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+          {/* Hero Background Image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url('https://images.pexels.com/photos/7130872/pexels-photo-7130872.jpeg')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              backgroundAttachment: 'fixed'
+            }}
+          ></div>
+
+          {/* Hero Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/50"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-amber-900/20 via-transparent to-orange-900/30"></div>
+
+          {/* Floating elements for visual interest */}
+          <div className="absolute top-20 right-1/4 w-2 h-20 bg-gradient-to-t from-white/25 to-transparent rounded-full animate-pulse"></div>
+          <div className="absolute top-16 right-1/4 ml-2 w-1 h-16 bg-gradient-to-t from-white/20 to-transparent rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+          <div className="absolute top-24 right-1/4 ml-1 w-1 h-12 bg-gradient-to-t from-white/15 to-transparent rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+
+          {/* Floating tech elements */}
+          <div className="absolute top-32 left-20 w-4 h-6 bg-white/15 rounded-full rotate-45 animate-float backdrop-blur-sm"></div>
+          <div className="absolute top-60 right-32 w-3 h-5 bg-white/12 rounded-full -rotate-30 animate-float-delayed backdrop-blur-sm"></div>
+          <div className="absolute bottom-40 left-1/3 w-5 h-7 bg-white/18 rounded-full rotate-12 animate-bounce-slow backdrop-blur-sm"></div>
+
+          {/* Keyboard and mouse elements */}
+          <div className="absolute top-1/3 left-16 w-8 h-8 bg-white/8 rounded border border-white/20 animate-float backdrop-blur-sm"></div>
+          <div className="absolute bottom-1/3 right-20 w-6 h-6 bg-white/12 rounded border border-white/25 animate-float-delayed backdrop-blur-sm"></div>
+
+          <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <motion.p
+                className="text-xl sm:text-2xl text-white/90 mb-6 font-light tracking-wide drop-shadow-lg"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+              >
+                💻 Crafting Digital Experiences
+              </motion.p>
+
+              <motion.h1
+                className="text-6xl sm:text-8xl lg:text-9xl font-bold mb-8 text-white leading-tight drop-shadow-2xl text-shadow-professional"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                Mayank Soni
+              </motion.h1>
+
+              <motion.p
+                className="text-2xl sm:text-4xl lg:text-5xl font-light mb-10 bg-gradient-to-r from-blue-200 via-white to-blue-200 bg-clip-text text-transparent drop-shadow-lg"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+              >
+                Frontend Technical Lead
+              </motion.p>
+
+              <motion.p
+                className="text-lg sm:text-xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-lg"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
+              >
+                Building exceptional web experiences with 8+ years of expertise in React, JavaScript, and modern frontend technologies. Leading teams to deliver scalable, performant applications.
+              </motion.p>
+
+              <motion.div
+                className="flex justify-center space-x-8 mb-16"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.9 }}
+              >
+                <a href="https://www.linkedin.com/in/mayank-soni-007/" target="_blank" rel="noopener noreferrer"
+                  className="group w-16 h-16 bg-gradient-to-br from-blue-600/30 to-blue-700/30 backdrop-blur-md rounded-2xl flex items-center justify-center text-white hover:from-blue-500 hover:to-blue-600 transition-all duration-500 hover:scale-110 hover:-translate-y-2 shadow-2xl border border-blue-400/30 hover-lift">
+                  <FaLinkedin className="text-2xl group-hover:scale-110 transition-transform duration-300" />
+                </a>
+                <a href="https://github.com/mayankSoni07" target="_blank" rel="noopener noreferrer"
+                  className="group w-16 h-16 bg-gradient-to-br from-gray-700/30 to-gray-800/30 backdrop-blur-md rounded-2xl flex items-center justify-center text-white hover:from-gray-600 hover:to-gray-700 transition-all duration-500 hover:scale-110 hover:-translate-y-2 shadow-2xl border border-gray-500/30 hover-lift">
+                  <FaGithub className="text-2xl group-hover:scale-110 transition-transform duration-300" />
+                </a>
+                <a href="mailto:soni.mayank.3194@gmail.com"
+                  className="group w-16 h-16 bg-gradient-to-br from-red-600/30 to-pink-600/30 backdrop-blur-md rounded-2xl flex items-center justify-center text-white hover:from-red-500 hover:to-pink-500 transition-all duration-500 hover:scale-110 hover:-translate-y-2 shadow-2xl border border-red-400/30 hover-lift">
+                  <FaEnvelope className="text-2xl group-hover:scale-110 transition-transform duration-300" />
+                </a>
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* Enhanced Scroll indicator */}
+          <motion.div
+            className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 2 }}
+          >
+            <p className="text-white/80 text-sm mb-3 font-light tracking-wider drop-shadow-lg">SCROLL TO EXPLORE</p>
+            <div className="w-8 h-12 border-2 border-white/40 rounded-full flex justify-center backdrop-blur-sm">
+              <div className="w-1.5 h-4 bg-gradient-to-b from-white to-blue-200 rounded-full mt-2 animate-pulse"></div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* About Section */}
+        <section id="about" className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+          {/* Background Elements */}
+          <div className="absolute inset-0">
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-amber-100/30 to-orange-100/30 dark:from-amber-900/10 dark:to-orange-900/10"></div>
+            <div className="absolute top-20 right-10 w-64 h-64 bg-gradient-to-br from-amber-400/10 to-orange-400/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-20 left-10 w-80 h-80 bg-gradient-to-br from-orange-400/10 to-yellow-400/10 rounded-full blur-3xl"></div>
+            {/* Coffee-themed patterns */}
+            <div className="absolute top-10 left-1/4 w-6 h-8 bg-amber-800/10 rounded-full rotate-45"></div>
+            <div className="absolute bottom-40 right-1/4 w-4 h-6 bg-orange-800/15 rounded-full"></div>
+            <div className="absolute top-1/2 right-10 w-3 h-5 bg-yellow-800/20 rounded-full rotate-45"></div>
+          </div>
+          <div className="relative max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-white">
+                About me
+              </h2>
+              <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full"></div>
+            </motion.div>
+
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                className="text-center lg:text-left"
+              >
+                <div className="relative inline-block mb-8">
+                  <div className="w-72 h-72 mx-auto lg:mx-0 rounded-3xl bg-gradient-to-br from-amber-500 via-orange-500 to-yellow-500 p-1 shadow-2xl">
+                    <div className="w-full h-full rounded-3xl bg-gradient-to-br from-amber-50 to-orange-50 dark:from-gray-800 dark:to-gray-700 flex items-center justify-center text-7xl shadow-inner">
+                      👨‍💻
+                    </div>
+                  </div>
+                  <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl flex items-center justify-center text-3xl animate-bounce shadow-xl">
+                    ☕
+                  </div>
+                  <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-400 rounded-xl flex items-center justify-center text-xl animate-pulse shadow-lg">
+                    ⚡
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                className="space-y-6"
+              >
+                <h3 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-6">
+                  Building Excellence in Web Development
+                </h3>
+                <div className="space-y-4">
+                  <p className="text-xl text-white/90 leading-relaxed font-medium">
+                    8+ Years of Frontend Mastery
+                  </p>
+                  <p className="text-lg text-white/80 leading-relaxed">
+                    Like a master craftsman building the perfect structure, I blend creativity with technical expertise to create exceptional web experiences. Specializing in React, JavaScript, and modern UI/UX principles, I transform complex ideas into seamless, scalable digital solutions.
+                  </p>
+                  <p className="text-lg text-white/80 leading-relaxed">
+                    Leading teams of 15+ developers, I've consistently delivered high-performance applications while mentoring the next generation of developers. Every project is an opportunity to push boundaries and create something extraordinary.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-10">
+                  <div className="group text-center p-6 bg-black/20 backdrop-blur-sm rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-white/20">
+                    <div className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform duration-300">8+</div>
+                    <div className="text-base font-medium text-white/90">Years Experience</div>
+                  </div>
+                  <div className="group text-center p-6 bg-black/20 backdrop-blur-sm rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-white/20">
+                    <div className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform duration-300">15+</div>
+                    <div className="text-base font-medium text-white/90">Team Members Led</div>
+                  </div>
+                  <div className="group text-center p-6 bg-black/20 backdrop-blur-sm rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-white/20">
+                    <div className="text-4xl font-bold bg-gradient-to-r from-pink-400 to-orange-400 bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform duration-300">50+</div>
+                    <div className="text-base font-medium text-white/90">Projects Delivered</div>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-4 mt-8">
+                  <span className="flex items-center text-white/80">
+                    <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                    📍 Gurugram, India
+                  </span>
+                  <span className="flex items-center text-white/80">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                    📞 +91 - 9997714831
+                  </span>
+                  <span className="flex items-center text-white/80">
+                    <span className="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                    ✉️ soni.mayank.3194@gmail.com
+                  </span>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Experience Section */}
+        <section id="experience" className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+          {/* Background Elements */}
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/30 via-purple-50/30 to-pink-50/30 dark:from-indigo-900/10 dark:via-purple-900/10 dark:to-pink-900/10"></div>
+            {/* Company-themed background elements */}
+            <div className="absolute top-20 left-20 text-6xl text-blue-500/8 animate-float">🏢</div>
+            <div className="absolute top-40 right-10 text-5xl text-purple-500/8 animate-bounce-slow">📈</div>
+            <div className="absolute bottom-40 left-10 text-7xl text-pink-500/8 animate-spin-slow">💼</div>
+            <div className="absolute bottom-20 right-20 text-4xl text-green-500/8 animate-pulse">🎯</div>
+            {/* Abstract shapes */}
+            <div className="absolute top-10 right-1/3 w-32 h-32 bg-gradient-to-br from-blue-300/10 to-purple-300/10 rounded-full blur-2xl animate-float"></div>
+            <div className="absolute bottom-10 left-1/3 w-24 h-24 border-2 border-purple-300/20 rounded-lg rotate-45 animate-spin-reverse"></div>
+            {/* Subtle pattern overlay */}
+            <div className="absolute inset-0 opacity-20" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.05'%3E%3Cpath d='M0 0h80v80H0V0zm20 20v40h40V20H20zm20 35a15 15 0 1 1 0-30 15 15 0 0 1 0 30z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+              backgroundSize: '80px 80px'
+            }}></div>
+          </div>
+          <div className="relative max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-white">
+                Experience
+              </h2>
+              <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full mb-6"></div>
+              <p className="text-lg text-white/80">My professional journey</p>
+            </motion.div>
+
+            {/* Timeline */}
+            <div className="relative">
+              {/* Timeline line */}
+              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 to-purple-600"></div>
+
+              <div className="space-y-12">
+                {/* Lenskart Experience */}
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  className="relative pl-20"
+                >
+                  <div className="absolute left-6 w-5 h-5 bg-blue-500 rounded-full border-4 border-white dark:border-gray-900 shadow-lg"></div>
+                  <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">🚀 Lenskart.com</h3>
+                      <span className="text-sm text-gray-500 dark:text-gray-400 bg-blue-100 dark:bg-blue-900/30 px-3 py-1 rounded-full">
+                        2023 - 2024
+                      </span>
+                    </div>
+                    <p className="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-4">SENIOR SOFTWARE DEVELOPER</p>
+                    <div className="text-gray-600 dark:text-gray-300 space-y-2">
+                      <p>• Led 15 developers across 10+ projects</p>
+                      <p>• Improved Page Speed Score by 35–40%</p>
+                      <p>• Implemented micro-frontend architecture</p>
+                      <p>• Mentored junior developers and conducted code reviews</p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Nicobar Experience */}
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="relative pl-20"
+                >
+                  <div className="absolute left-6 w-5 h-5 bg-purple-500 rounded-full border-4 border-white dark:border-gray-900 shadow-lg"></div>
+                  <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">🎨 Nicobar Design Studio</h3>
+                      <span className="text-sm text-gray-500 dark:text-gray-400 bg-purple-100 dark:bg-purple-900/30 px-3 py-1 rounded-full">
+                        Dec 2018 - Oct 2020
+                      </span>
+                    </div>
+                    <p className="text-lg font-semibold text-purple-600 dark:text-purple-400 mb-4">Team Lead</p>
+                    <div className="text-gray-600 dark:text-gray-300 space-y-2">
+                      <p>• Managed team of 5 developers</p>
+                      <p>• Improved Page Speed by ~40%</p>
+                      <p>• Built membership & payment modules</p>
+                      <p>• Implemented responsive design patterns</p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Boutiqaat Experience */}
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="relative pl-20"
+                >
+                  <div className="absolute left-6 w-5 h-5 bg-pink-500 rounded-full border-4 border-white dark:border-gray-900 shadow-lg"></div>
+                  <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">🛍️ Boutiqaat (Kuwait)</h3>
+                      <span className="text-sm text-gray-500 dark:text-gray-400 bg-pink-100 dark:bg-pink-900/30 px-3 py-1 rounded-full">
+                        Mar 2018 - Dec 2018
+                      </span>
+                    </div>
+                    <p className="text-lg font-semibold text-pink-600 dark:text-pink-400 mb-4">Sr. Software Developer</p>
+                    <div className="text-gray-600 dark:text-gray-300 space-y-2">
+                      <p>• Developed with React.js + Redux</p>
+                      <p>• Built Homepage, Checkout, Dashboard</p>
+                      <p>• Optimized performance and user experience</p>
+                      <p>• Collaborated with international team</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Projects Section */}
+        <section id="projects" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 overflow-hidden">
+          {/* Background Elements */}
+          <div className="absolute inset-0">
+            {/* Animated background shapes */}
+            <div className="absolute top-10 left-10 w-40 h-40 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-2xl animate-float"></div>
+            <div className="absolute bottom-10 right-10 w-60 h-60 bg-gradient-to-br from-purple-400/15 to-pink-400/15 rounded-full blur-3xl animate-float-delayed"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-gradient-to-br from-cyan-400/10 to-blue-400/10 rounded-full blur-xl animate-pulse"></div>
+
+            {/* Project-themed background icons */}
+            <div className="absolute top-20 right-1/4 text-7xl text-purple-500/6 animate-spin-slow">🚀</div>
+            <div className="absolute bottom-32 left-1/4 text-6xl text-blue-500/6 animate-bounce-slow">💻</div>
+            <div className="absolute top-1/3 left-10 text-5xl text-pink-500/6 animate-float">🎨</div>
+            <div className="absolute bottom-1/4 right-20 text-4xl text-green-500/6 animate-pulse">⚡</div>
+
+            {/* Geometric elements */}
+            <div className="absolute top-40 left-1/3 w-16 h-16 border-2 border-blue-300/20 rounded-lg rotate-12 animate-spin-reverse"></div>
+            <div className="absolute bottom-40 right-1/3 w-12 h-12 bg-purple-300/15 rotate-45 animate-bounce-slow"></div>
+
+            {/* Code-like pattern */}
+            <div className="absolute inset-0 opacity-10" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%236366f1' fill-opacity='0.1'%3E%3Cpath d='M20 20h20v20H20V20zm40 0h20v20H60V20zm40 0h20v20h-20V20zM20 60h20v20H20V60zm40 0h20v20H60V60zm40 0h20v20h-20V60z'/%3E%3C/g%3E%3C/svg%3E")`,
+              backgroundSize: '120px 120px'
+            }}></div>
+          </div>
+          <div className="relative max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                Featured Projects
+              </h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300">AI-powered solutions I've built</p>
+            </motion.div>
+
+            <div className="grid sm:grid-cols-2 gap-8">
+              {projects.map((project, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="group relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 border border-gray-200/50 dark:border-gray-700/50 overflow-hidden hover:-translate-y-2"
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
+                  <div className="relative">
+                    <div className="flex items-center space-x-4 mb-6">
+                      <span className="text-3xl sm:text-4xl">{project.icon}</span>
+                      <div className={`w-12 h-1 bg-gradient-to-r ${project.gradient} rounded-full`}></div>
+                    </div>
+                    <h3 className="text-lg sm:text-xl font-bold mb-4 text-gray-800 dark:text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm sm:text-base">
+                      {project.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Skills Section */}
+        <section id="skills" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 overflow-hidden">
+          {/* Background Elements */}
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20"></div>
+            {/* Tech-themed background icons */}
+            <div className="absolute top-10 left-10 text-8xl text-blue-500/5 animate-spin-slow">⚛️</div>
+            <div className="absolute top-20 right-20 text-6xl text-green-500/5 animate-bounce-slow">🚀</div>
+            <div className="absolute bottom-20 left-20 text-7xl text-purple-500/5 animate-float">⚙️</div>
+            <div className="absolute bottom-10 right-10 text-5xl text-yellow-500/5 animate-pulse">💡</div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-9xl text-gray-500/3 animate-spin-reverse">🔧</div>
+            {/* Geometric shapes */}
+            <div className="absolute top-40 left-1/4 w-20 h-20 border border-blue-200/30 rounded-lg rotate-12 animate-float"></div>
+            <div className="absolute bottom-40 right-1/4 w-16 h-16 bg-gradient-to-br from-purple-200/20 to-pink-200/20 rounded-full animate-bounce-slow"></div>
+            {/* Grid pattern */}
+            <div className="absolute inset-0 opacity-30" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e5e7eb' fill-opacity='0.1'%3E%3Ccircle cx='20' cy='20' r='1'/%3E%3C/g%3E%3C/svg%3E")`,
+              backgroundSize: '40px 40px'
+            }}></div>
+          </div>
+          <div className="relative max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+                Skills
+              </h2>
+              <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full mb-6"></div>
+              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                Demonstrating my expertise in web development through dynamic visual metrics,
+                emphasizing continuous learning and improvement in each technology.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6">
+              {/* React */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-center border border-gray-100 dark:border-gray-700"
+              >
+                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <FaReact className="text-2xl text-white" />
+                </div>
+                <p className="font-semibold text-gray-800 dark:text-white text-sm">React</p>
+              </motion.div>
+
+              {/* Redux */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15 }}
+                className="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-center border border-gray-100 dark:border-gray-700"
+              >
+                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <SiRedux className="text-2xl text-white" />
+                </div>
+                <p className="font-semibold text-gray-800 dark:text-white text-sm">Redux</p>
+              </motion.div>
+
+              {/* Angular */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-center border border-gray-100 dark:border-gray-700"
+              >
+                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <span className="text-2xl text-white font-bold">A</span>
+                </div>
+                <p className="font-semibold text-gray-800 dark:text-white text-sm">Angular</p>
+              </motion.div>
+
+              {/* Node.js */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25 }}
+                className="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-center border border-gray-100 dark:border-gray-700"
+              >
+                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <FaNodeJs className="text-2xl text-white" />
+                </div>
+                <p className="font-semibold text-gray-800 dark:text-white text-sm">Node.js</p>
+              </motion.div>
+
+              {/* JavaScript */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-center border border-gray-100 dark:border-gray-700"
+              >
+                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <span className="text-xl text-black font-bold">JS</span>
+                </div>
+                <p className="font-semibold text-gray-800 dark:text-white text-sm">JavaScript</p>
+              </motion.div>
+
+              {/* HTML5 */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.35 }}
+                className="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-center border border-gray-100 dark:border-gray-700"
+              >
+                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <span className="text-xl text-white font-bold">5</span>
+                </div>
+                <p className="font-semibold text-gray-800 dark:text-white text-sm">HTML5</p>
+              </motion.div>
+
+              {/* CSS3 */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-center border border-gray-100 dark:border-gray-700"
+              >
+                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <span className="text-xl text-white font-bold">3</span>
+                </div>
+                <p className="font-semibold text-gray-800 dark:text-white text-sm">CSS3</p>
+              </motion.div>
+            </div>
+
+            {/* Second row of skills */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6 mt-8">
+              {/* Bootstrap */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45 }}
+                className="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-center border border-gray-100 dark:border-gray-700"
+              >
+                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-purple-700 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <span className="text-lg text-white font-bold">B</span>
+                </div>
+                <p className="font-semibold text-gray-800 dark:text-white text-sm">Bootstrap</p>
+              </motion.div>
+
+              {/* Material UI */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-center border border-gray-100 dark:border-gray-700"
+              >
+                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <span className="text-lg text-white font-bold">MUI</span>
+                </div>
+                <p className="font-semibold text-gray-800 dark:text-white text-sm">Material UI</p>
+              </motion.div>
+
+              {/* TypeScript */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.55 }}
+                className="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-center border border-gray-100 dark:border-gray-700"
+              >
+                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <SiTypescript className="text-2xl text-white" />
+                </div>
+                <p className="font-semibold text-gray-800 dark:text-white text-sm">TypeScript</p>
+              </motion.div>
+
+              {/* Git */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-center border border-gray-100 dark:border-gray-700"
+              >
+                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <FaGitAlt className="text-2xl text-white" />
+                </div>
+                <p className="font-semibold text-gray-800 dark:text-white text-sm">Git</p>
+              </motion.div>
+
+              {/* Webpack */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.65 }}
+                className="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-center border border-gray-100 dark:border-gray-700"
+              >
+                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <span className="text-lg text-white font-bold">W</span>
+                </div>
+                <p className="font-semibold text-gray-800 dark:text-white text-sm">Webpack</p>
+              </motion.div>
+
+              {/* MongoDB */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
+                className="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-center border border-gray-100 dark:border-gray-700"
+              >
+                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-green-500 to-green-700 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <FaDatabase className="text-2xl text-white" />
+                </div>
+                <p className="font-semibold text-gray-800 dark:text-white text-sm">MongoDB</p>
+              </motion.div>
+
+              {/* Express */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.75 }}
+                className="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-center border border-gray-100 dark:border-gray-700"
+              >
+                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-gray-600 to-gray-800 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <span className="text-lg text-white font-bold">EX</span>
+                </div>
+                <p className="font-semibold text-gray-800 dark:text-white text-sm">Express</p>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Education Section */}
+        <section id="education" className="py-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                Education
+              </h2>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="relative max-w-3xl mx-auto"
+            >
+              <div className="absolute -inset-4 bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-3xl blur-xl"></div>
+              <div className="relative bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-xl text-center border border-gray-100 dark:border-gray-700">
+                <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6">
+                  🎓
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white mb-2">
+                  B.Tech Computer Science
+                </h3>
+                <p className="text-lg sm:text-xl font-semibold text-gray-600 dark:text-gray-300 mb-2">
+                  Arya College of Engineering & IT, RTU
+                </p>
+                <p className="text-gray-500 dark:text-gray-400 font-medium">2012 – 2016</p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-900">
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Let's Connect
+              </h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300">Ready to work together?</p>
+            </motion.div>
+
+            <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-8">
+              <motion.a
+                href="mailto:soni.mayank.3194@gmail.com"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="group flex items-center space-x-4 bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+              >
+                <div className="p-4 bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <FaEnvelope className="text-xl sm:text-2xl" />
+                </div>
+                <div>
+                  <p className="font-bold text-gray-800 dark:text-white text-sm sm:text-base">Email</p>
+                  <p className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm">soni.mayank.3194@gmail.com</p>
+                </div>
+              </motion.a>
+
+              <motion.a
+                href="https://www.linkedin.com/in/mayank-soni-007/"
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="group flex items-center space-x-4 bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+              >
+                <div className="p-4 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <FaLinkedin className="text-xl sm:text-2xl" />
+                </div>
+                <div>
+                  <p className="font-bold text-gray-800 dark:text-white text-sm sm:text-base">LinkedIn</p>
+                  <p className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm">mayank-soni-007</p>
+                </div>
+              </motion.a>
+
+              <motion.a
+                href="https://github.com/mayankSoni07"
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="group flex items-center space-x-4 bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+              >
+                <div className="p-4 bg-gradient-to-r from-gray-700 to-gray-900 dark:from-gray-600 dark:to-gray-800 rounded-2xl text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <FaGithub className="text-xl sm:text-2xl" />
+                </div>
+                <div>
+                  <p className="font-bold text-gray-800 dark:text-white text-sm sm:text-base">GitHub</p>
+                  <p className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm">mayankSoni07</p>
+                </div>
+              </motion.a>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="py-12 text-center bg-gray-900 dark:bg-black text-gray-300">
+          <div className="max-w-7xl mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              className="space-y-4"
+            >
+              <p className="text-lg">&copy; 2024 Mayank Soni</p>
+              <p className="text-gray-400">Built with ❤️ using React & TailwindCSS</p>
+            </motion.div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  )
+}
+
+export default App
